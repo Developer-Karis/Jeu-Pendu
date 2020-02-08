@@ -1,0 +1,67 @@
+body {
+    text-align: center;
+    background-color: khaki;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    position: relative;
+    background-color: aqua;
+    width: 30%;
+    margin: 1.5em auto;
+    border: 2px solid black;
+    font-size: 2.5em;
+}
+
+button {
+    position: relative;
+    font-size: 1.5em;
+    margin: 1em 1em; 
+    cursor: pointer;
+    padding: 1em;
+    top: 3em;
+    border: 2px solid black;
+}
+
+button:hover {
+    background-color: yellow;
+}
+
+#mot {
+    position: relative;
+    font-size: 8em;
+    top: 1em;
+}
+
+#essais {
+    position: relative;
+    font-size: 1.5em;
+    color: red;
+    left: 6.8em;
+    bottom: 1.5em;
+    font-weight: bold;
+}
+
+#restart {
+    position: relative;
+    width: 7em;
+    top: 2em;
+    right: 22em;
+    cursor: pointer;
+}
+
+#imagePendu {
+    position: relative;
+    border: 3px solid black;
+    right: 15em;
+    top: 5em;
+    width: 12em;
+}
+
+.lettre {
+    position: relative;
+    display: inline-block;
+    font-size: 3.5em;
+    left: 2.9em;
+    bottom: 1.2em;
+}
