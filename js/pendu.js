@@ -9,56 +9,47 @@ let dictionnairesMots = ["terminal", "processeur", "informatique", "peripherique
     "rideau", "robinet", "salle", "savon", "serrure", "serviette", "siege", "sieste", "silence", "sol", "sommeil", "sonnette", "sortie", "table",
     "tableau", "tabouret", "tapis", "tiroir", "toilette", "vitre", "wc"];
 
-let motRandom = motsAleatoires().toUpperCase();
+let motRandom = motsAleatoires().toUpperCase(); // Mot générer aléatoirement
 console.log(motRandom);
 
+let listeMots = dictionnairesMots; // Contient tous les mots du Dictionnaires - Liste de mots
+let mauvaiseLettre = 0; // Permet de compter le nombre de mauvaise lettres 
+let bonneLettre = 0;    // Permet de compter le nombre de bonne lettres
+let motTrouvee = false; // Permet d'indiquer si le mot à été trouvé ou pas
+
 /**
- * Permet de lancer le jeu
+ * Fonction qui modifie la couleur lorsque la lettre,
+ * selectionnée est bonne ou pas.
+ * @param {*} lettre - Lettre reçu en paramètre, L'élément en cours
+ * @param {*} couleur - Couleur reçu en paramètre, String avec le code couleur
  */
-function game() {
-    init();
-    recommencer();
-    nombresEssais();
+function changeCouleurLettre(lettre, couleur) {
+    lettre.style.backgroundColor = couleur;
 }
 
 /**
- * Créer le mot cacher
- */
-function init() {
-    let tirets = "-";
-    let newDiv = document.getElementById("mettreMot");
-    for (let i in motRandom) {
-        newDiv.innerHTML += "<span class='lettre'>" + tirets + "</span>";
-    }
-    document.getElementById("imagePendu").src = "images/blanc.jpg";
-}
-
-/**
- * Vérifie et teste la lettre reçu en paramètre,
- * l'utilisateur choisie une lettre pour compléter le mot.
- * 
- * @param {*} lettre - Lettre recçu en paramètre
+ * Fonction qui gère les lettres du clavier, introduits par l'utilisateur
+ * @param {*} element - L'élément en cours, this(lettre)
  */
 function choisirLettre(lettre) {
-    let nbErreurs = 0;
-    nbErreurs++;
     for (let i in motRandom) {
-        if (lettre == motRandom.charAt(i)) {
-            tirets = lettre;
-        } else if (lettre !== motRandom.charAt(i)) {
-            document.getElementById("imagePendu").src = "images/pendu" + nbErreurs + ".PNG";
+        if (lettre.innerHTML == motRandom.charAt(i)) {
+            changeCouleurLettre(lettre, "#25EB06");
+            bonneLettre++;
         }
     }
-}
 
-/**
- * Affiche le nombre d'essais encore possible pour le joueur
- */
-function nombresEssais() {
-    let infos = document.getElementById("essais");
-    let nbEssais = motRandom.length;
-    infos.innerHTML = ("Il vous reste " + nbEssais + " essais");
-    return nbEssais;
+    /*if (!motTrouvee) {
+        mauvaiseLettre++;
+        document.getElementById('imagePendu').src = "images/pendu" + mauvaiseLettre + ".PNG";
+
+        if (mauvaiseLettre >= 8) {
+            alert("Vous avez perdu !");
+        }
+    }*/
+    if (bonneLettre == motRandom.length) {
+        alert("Vous avez gagné !");
+    }
 }
 
 /**
@@ -70,15 +61,4 @@ function motsAleatoires() {
     let resultat = Math.floor(Math.random() * (dernierMot - premierMot));
     let afficheMot = dictionnairesMots[resultat];
     return afficheMot;
-}
-
-/**
- * Permet de rafraîchir la page en remettant tout à zéro
- */
-function recommencer() {
-    document.getElementById("restart").src = "images/restart.PNG";
-    let recom = document.getElementById("restart");
-    if (recom.onclick == true) {
-        window.location.reload();
-    }
 }

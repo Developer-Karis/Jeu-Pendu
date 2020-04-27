@@ -5,45 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Jeu Pendu</title>
+    <title>Jeu du Pendu</title>
     <script src="js/pendu.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
 </head>
 
-<body onload="game();">
-    <h1>Jeu du Pendu</h1>
-    <a href="pendu.html"><img id="restart"></a></a>
-    <img id="imagePendu">
+<body>
+    <h1>Jeu du Pendu (Creator : Severeclick Beats)</h1>
+    <img id="imagePendu" src="images/blanc.jpg">
     <div id="mettreMot"></div>
-    <span id="essais"></span>
     <section>
-        <button class="buttonLettre" value="A" onclick="choisirLettre('A');">A</button>
-        <button class="buttonLettre" value="B" onclick="choisirLettre('B');">B</button>
-        <button class="buttonLettre" value="C" onclick="choisirLettre('C');">C</button>
-        <button class="buttonLettre" value="D" onclick="choisirLettre('D');">D</button>
-        <button class="buttonLettre" value="E" onclick="choisirLettre('E');">E</button>
-        <button class="buttonLettre" value="F" onclick="choisirLettre('F');">F</button>
-        <button class="buttonLettre" value="G" onclick="choisirLettre('G');">G</button>
-        <button class="buttonLettre" value="H" onclick="choisirLettre('H');">H</button>
-        <button class="buttonLettre" value="I" onclick="choisirLettre('I');">I</button>
-        <button class="buttonLettre" value="J" onclick="choisirLettre('J');">J</button>
-        <button class="buttonLettre" value="K" onclick="choisirLettre('K');">K</button>
-        <button class="buttonLettre" value="L" onclick="choisirLettre('L');">L</button>
-        <button class="buttonLettre" value="M" onclick="choisirLettre('M');">M</button>
-        <button class="buttonLettre" value="N" onclick="choisirLettre('N');">N</button>
-        <button class="buttonLettre" value="O" onclick="choisirLettre('O');">O</button>
-        <button class="buttonLettre" value="P" onclick="choisirLettre('P');">P</button>
-        <button class="buttonLettre" value="Q" onclick="choisirLettre('Q');">Q</button>
-        <button class="buttonLettre" value="R" onclick="choisirLettre('R');">R</button>
-        <button class="buttonLettre" value="S" onclick="choisirLettre('S');">S</button>
-        <button class="buttonLettre" value="T" onclick="choisirLettre('T');">T</button>
-        <button class="buttonLettre" value="U" onclick="choisirLettre('U');">U</button>
-        <button class="buttonLettre" value="V" onclick="choisirLettre('V');">V</button>
-        <button class="buttonLettre" value="W" onclick="choisirLettre('W');">W</button>
-        <button class="buttonLettre" value="X" onclick="choisirLettre('X');">X</button>
-        <button class="buttonLettre" value="Y" onclick="choisirLettre('Y');">Y</button>
-        <button class="buttonLettre" value="Z" onclick="choisirLettre('Z');">Z</button>
+        <button onclick="choisirLettre(this);">A</button>
+        <button onclick="choisirLettre(this);">B</button>
+        <button onclick="choisirLettre(this);">C</button>
+        <button onclick="choisirLettre(this);">D</button>
+        <button onclick="choisirLettre(this);">E</button>
+        <button onclick="choisirLettre(this);">F</button>
+        <button onclick="choisirLettre(this);">G</button>
+        <button onclick="choisirLettre(this);">H</button>
+        <button onclick="choisirLettre(this);">I</button>
+        <button onclick="choisirLettre(this);">J</button>
+        <button onclick="choisirLettre(this);">K</button>
+        <button onclick="choisirLettre(this);">L</button>
+        <button onclick="choisirLettre(this);">M</button>
+        <button onclick="choisirLettre(this);">N</button>
+        <button onclick="choisirLettre(this);">O</button>
+        <button onclick="choisirLettre(this);">P</button>
+        <button onclick="choisirLettre(this);">Q</button>
+        <button onclick="choisirLettre(this);">R</button>
+        <button onclick="choisirLettre(this);">S</button>
+        <button onclick="choisirLettre(this);">T</button>
+        <button onclick="choisirLettre(this);">U</button>
+        <button onclick="choisirLettre(this);">V</button>
+        <button onclick="choisirLettre(this);">W</button>
+        <button onclick="choisirLettre(this);">X</button>
+        <button onclick="choisirLettre(this);">Y</button>
+        <button onclick="choisirLettre(this);">Z</button>
     </section>
+    <script>
+        let tirets = "?"
+        let newSpan = document.getElementById("mettreMot");
+        for (let i in motRandom) {
+            newSpan.innerHTML += "<span class='lettre'>" + tirets + "</span>";
+        }
+    </script>
 </body>
 
 </html>
