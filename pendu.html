@@ -41,10 +41,12 @@
         <button onclick="choisirLettre(this);">W</button>
         <button onclick="choisirLettre(this);">X</button>
         <button onclick="choisirLettre(this);">Y</button>
-        <button onclick="choisirLettre(this);">Z</button>
+        <button onclick="choisirLettre(this);">Z</button><br>
+        <button id="score" onclick="tableauScores();">Score</button>
+        <button id="restart" onclick="location.reload();">Rejouer</button>
     </section>
     <script>
-        let tirets = "?"
+            let tirets = "?"
         let newSpan = document.getElementById("mettreMot");
         for (let i in motRandom) {
             newSpan.innerHTML += "<span class='lettre'>" + tirets + "</span>";

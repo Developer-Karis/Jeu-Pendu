@@ -16,6 +16,13 @@ let listeMots = dictionnairesMots; // Contient tous les mots du Dictionnaires - 
 let mauvaiseLettre = 0; // Permet de compter le nombre de mauvaise lettres 
 let bonneLettre = 0;    // Permet de compter le nombre de bonne lettres
 let motTrouvee = false; // Permet d'indiquer si le mot à été trouvé ou pas
+let memeLettre = 0;     // Permet de compter si une lettre apparait plusieurs fois dans le mot.
+let verifDoublonsOuPlus = []; // Permet de mettre les doublons ou plus dans un tableau
+let lettresTrouvees = [];     // Permet de mettre toutes les lettres trouvées dans un tableau.
+let estUnDoublonOuPlus = false; // Permet d'indiquer si une lettre apparait plusieurs fois dans le mot.
+let supprimeDoublons;           // Permet de supprimer tous les doublons dans un tableau
+let score = 0;                  // Permet d'incrémenter le score lorsque le joueur gagne la partie
+let nomJoueur;
 
 /**
  * Fonction qui modifie la couleur lorsque la lettre,
@@ -36,6 +43,8 @@ function choisirLettre(lettre) {
         if (lettre.innerHTML == motRandom.charAt(i)) {
             changeCouleurLettre(lettre, "#25EB06");
             bonneLettre++;
+            lettresTrouvees.push(motRandom.charAt(i));
+            score++;
         }
     }
 
@@ -47,9 +56,25 @@ function choisirLettre(lettre) {
             alert("Vous avez perdu !");
         }
     }*/
-    if (bonneLettre == motRandom.length) {
+    if (lettresTrouvees.length == motRandom.length) {
         alert("Vous avez gagné !");
+        nomJoueur = prompt("Veuillez introduire votre nom : ");
+        score += 5;
+        if (confirm("Lancer une nouvelle partie ?")) {
+            tableauScores();
+            document.location.reload(true);
+        }
     }
+}
+
+/**
+ * Affiche le tableau de Scores pour les joueurs
+ */
+function tableauScores() {
+    alert("Voici le Tableau de Scores : " + "\n" + "Nom du Joueur : " + nomJoueur 
+    + "\n" + "Score : " + score 
+    + "\n" + "Lettre trouvée + 1 points" 
+    + "\n" + "Mot trouvé + 5 points");
 }
 
 /**

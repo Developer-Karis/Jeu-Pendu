@@ -24,4 +24,21 @@ button {
     font-size: 1.5em;
     margin-top: 2em;
     cursor: pointer;
+    border: none;
+    border: 3px solid black;
+}
+
+button:hover {
+    background-color: orange;
+}
+
+#score, #restart {
+    border-radius: 1em;
+    width: 17%;
+    font-size: 2em;
+    background-color: aqua;
+}
+
+#score:hover, #restart:hover {
+    background-color: yellow;
 }
