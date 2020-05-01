@@ -12,17 +12,24 @@ let dictionnairesMots = ["terminal", "processeur", "informatique", "peripherique
 let motRandom = motsAleatoires().toUpperCase(); // Mot générer aléatoirement
 console.log(motRandom);
 
-let listeMots = dictionnairesMots; // Contient tous les mots du Dictionnaires - Liste de mots
-let mauvaiseLettre = 0; // Permet de compter le nombre de mauvaise lettres 
-let bonneLettre = 0;    // Permet de compter le nombre de bonne lettres
-let motTrouvee = false; // Permet d'indiquer si le mot à été trouvé ou pas
-let memeLettre = 0;     // Permet de compter si une lettre apparait plusieurs fois dans le mot.
-let verifDoublonsOuPlus = []; // Permet de mettre les doublons ou plus dans un tableau
-let lettresTrouvees = [];     // Permet de mettre toutes les lettres trouvées dans un tableau.
-let estUnDoublonOuPlus = false; // Permet d'indiquer si une lettre apparait plusieurs fois dans le mot.
-let supprimeDoublons;           // Permet de supprimer tous les doublons dans un tableau
+let mauvaiseLettre = 0;         // Permet de compter le nombre de mauvaise lettres 
+let tableauMot = new Array();
+let memeLettre = 0;             // Permet de compter si une lettre apparait plusieurs fois dans le mot.
+let lettresTrouvees = [];       // Permet de mettre toutes les lettres trouvées dans un tableau.
 let score = 0;                  // Permet d'incrémenter le score lorsque le joueur gagne la partie
-let nomJoueur;
+let fini = false;               // Indique si le jeu est fini ou pas.
+let nomJoueur;                  // Variable du prompt - Demande le nom du Joueur
+
+/**
+ * Permet de lancer le jeu
+ */
+function startGame() {
+    let tirets = "?";
+    let newSpan = document.getElementById("mettreMot");
+    for (let i in motRandom) {
+        newSpan.innerHTML += "<span id=\"" + i + "\">" + tirets + "</span>";
+    }
+}
 
 /**
  * Fonction qui modifie la couleur lorsque la lettre,
@@ -39,26 +46,34 @@ function changeCouleurLettre(lettre, couleur) {
  * @param {*} element - L'élément en cours, this(lettre)
  */
 function choisirLettre(lettre) {
+    if (lettre.style.backgroundColor == "#25EB06" || fini) return;
+    changeCouleurLettre(lettre, "#25EB06");
+
+    let motTrouvee = false;
+
     for (let i in motRandom) {
-        if (lettre.innerHTML == motRandom.charAt(i)) {
-            changeCouleurLettre(lettre, "#25EB06");
-            bonneLettre++;
+        if (motRandom.charAt(i) == lettre.innerHTML) {
             lettresTrouvees.push(motRandom.charAt(i));
+            motTrouvee = true;
             score++;
         }
     }
 
-    /*if (!motTrouvee) {
+    if (!motTrouvee) {
         mauvaiseLettre++;
+        changeCouleurLettre(lettre, "red");
         document.getElementById('imagePendu').src = "images/pendu" + mauvaiseLettre + ".PNG";
 
         if (mauvaiseLettre >= 8) {
-            alert("Vous avez perdu !");
+            alert("Vous avez perdu !"
+                + "\n" + "Le mot à trouvé était : " + motRandom);
+            fini = true;
         }
-    }*/
+    }
     if (lettresTrouvees.length == motRandom.length) {
         alert("Vous avez gagné !");
         nomJoueur = prompt("Veuillez introduire votre nom : ");
+        fini = true;
         score += 5;
         if (confirm("Lancer une nouvelle partie ?")) {
             tableauScores();
@@ -71,10 +86,10 @@ function choisirLettre(lettre) {
  * Affiche le tableau de Scores pour les joueurs
  */
 function tableauScores() {
-    alert("Voici le Tableau de Scores : " + "\n" + "Nom du Joueur : " + nomJoueur 
-    + "\n" + "Score : " + score 
-    + "\n" + "Lettre trouvée + 1 points" 
-    + "\n" + "Mot trouvé + 5 points");
+    alert("Voici le Tableau de Scores : " + "\n" + "Nom du Joueur : " + nomJoueur
+        + "\n" + "Score : " + score
+        + "\n" + "Lettre trouvée + 1 points"
+        + "\n" + "Mot trouvé + 5 points");
 }
 
 /**

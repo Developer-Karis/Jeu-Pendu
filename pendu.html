@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body onload="startGame();">
     <h1>Jeu du Pendu (Creator : Severeclick Beats)</h1>
     <img id="imagePendu" src="images/blanc.jpg">
     <div id="mettreMot"></div>
@@ -45,13 +45,6 @@
         <button id="score" onclick="tableauScores();">Score</button>
         <button id="restart" onclick="location.reload();">Rejouer</button>
     </section>
-    <script>
-            let tirets = "?"
-        let newSpan = document.getElementById("mettreMot");
-        for (let i in motRandom) {
-            newSpan.innerHTML += "<span class='lettre'>" + tirets + "</span>";
-        }
-    </script>
 </body>
 
 </html>

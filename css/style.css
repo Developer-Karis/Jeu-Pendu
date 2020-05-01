@@ -15,7 +15,7 @@ body {
     font-size: 3em;
 }
 
-.lettre {
+span {
     text-decoration: underline;
     margin: 0.1em;
 }
