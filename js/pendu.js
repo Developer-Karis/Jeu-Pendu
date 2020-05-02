@@ -13,22 +13,18 @@ let motRandom = motsAleatoires().toUpperCase(); // Mot générer aléatoirement
 console.log(motRandom);
 
 let mauvaiseLettre = 0;         // Permet de compter le nombre de mauvaise lettres 
-let tableauMot = new Array();
-let memeLettre = 0;             // Permet de compter si une lettre apparait plusieurs fois dans le mot.
-let lettresTrouvees = [];       // Permet de mettre toutes les lettres trouvées dans un tableau.
+let lettresTrouvees = 0;       // Permet de mettre toutes les lettres trouvées dans un tableau.
 let score = 0;                  // Permet d'incrémenter le score lorsque le joueur gagne la partie
 let fini = false;               // Indique si le jeu est fini ou pas.
 let nomJoueur;                  // Variable du prompt - Demande le nom du Joueur
-let tirets = "?";
 
 /**
  * Permet de lancer le jeu
  */
 function startGame() {
+    let tirets = "?";
     let newSpan = document.getElementById("mettreMot");
     for (let i in motRandom) {
-        // Mettre a jour la variable tirets
-        
         newSpan.innerHTML += "<span id=\"" + i + "\">" + tirets + "</span>";
     }
 }
@@ -48,38 +44,46 @@ function changeCouleurLettre(lettre, couleur) {
  * @param {*} element - L'élément en cours, this(lettre)
  */
 function choisirLettre(lettre) {
+    if (lettre.style.backgroundColor == "#25EB06" || fini) return;
+    changeCouleurLettre(lettre, "#25EB06");
+
     let motTrouvee = false;
 
     for (let i in motRandom) {
         if (motRandom.charAt(i) == lettre.innerHTML) {
-            changeCouleurLettre(lettre, "#25EB06");
-            lettresTrouvees.push(motRandom.charAt(i));
+            document.getElementById(i).innerHTML = lettre.innerHTML;
             motTrouvee = true;
+            lettre.disabled = true;
+            lettresTrouvees++;
             score++;
         }
     }
 
     if (!motTrouvee) {
         mauvaiseLettre++;
+        lettre.disabled = true;
         changeCouleurLettre(lettre, "red");
         document.getElementById('imagePendu').src = "images/pendu" + mauvaiseLettre + ".PNG";
 
         if (mauvaiseLettre >= 8) {
             alert("Vous avez perdu !"
                 + "\n" + "Le mot à trouvé était : " + motRandom);
+            for (let i in motRandom) {
+                document.getElementById(i).innerHTML = motRandom.charAt(i);
+            }
             fini = true;
-            document.location.reload(true);
         }
     }
-    if (lettresTrouvees.length == motRandom.length) {
-        alert("Vous avez gagné !");
-        nomJoueur = prompt("Veuillez introduire votre nom : ");
+    if (lettresTrouvees == motRandom.length) {
+        document.getElementById('imagePendu').src = "images/smiley.gif";
         fini = true;
+        // alert("Vous avez gagné !");
+        // nomJoueur = prompt("Veuillez introduire votre nom : ");
         score += 5;
-        if (confirm("Lancer une nouvelle partie ?")) {
+        /*if (confirm("Lancer une nouvelle partie ?")) {
             tableauScores();
             document.location.reload(true);
-        }
+        }*/
     }
 }
 
