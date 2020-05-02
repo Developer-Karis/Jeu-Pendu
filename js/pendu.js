@@ -19,14 +19,16 @@ let lettresTrouvees = [];       // Permet de mettre toutes les lettres trouvées
 let score = 0;                  // Permet d'incrémenter le score lorsque le joueur gagne la partie
 let fini = false;               // Indique si le jeu est fini ou pas.
 let nomJoueur;                  // Variable du prompt - Demande le nom du Joueur
+let tirets = "?";
 
 /**
  * Permet de lancer le jeu
  */
 function startGame() {
-    let tirets = "?";
     let newSpan = document.getElementById("mettreMot");
     for (let i in motRandom) {
+        // Mettre a jour la variable tirets
+        
         newSpan.innerHTML += "<span id=\"" + i + "\">" + tirets + "</span>";
     }
 }
@@ -46,13 +48,11 @@ function changeCouleurLettre(lettre, couleur) {
  * @param {*} element - L'élément en cours, this(lettre)
  */
 function choisirLettre(lettre) {
-    if (lettre.style.backgroundColor == "#25EB06" || fini) return;
-    changeCouleurLettre(lettre, "#25EB06");
-
     let motTrouvee = false;
 
     for (let i in motRandom) {
         if (motRandom.charAt(i) == lettre.innerHTML) {
+            changeCouleurLettre(lettre, "#25EB06");
             lettresTrouvees.push(motRandom.charAt(i));
             motTrouvee = true;
             score++;
@@ -68,6 +68,7 @@ function choisirLettre(lettre) {
             alert("Vous avez perdu !"
                 + "\n" + "Le mot à trouvé était : " + motRandom);
             fini = true;
+            document.location.reload(true);
         }
     }
     if (lettresTrouvees.length == motRandom.length) {
