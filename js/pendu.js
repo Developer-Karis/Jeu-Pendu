@@ -2,21 +2,20 @@
 
 // Initialisation des variables globales
 
-let dictionnairesMots = ["terminal", "processeur", "informatique", "peripheriques", "ordinateur", "numerique", "analogique", "declick",
+let dictionnaire = ["terminal", "processeur", "informatique", "peripheriques", "ordinateur", "numerique", "analogique", "declick",
     "angle", "armoire", "banc", "bureau", "cabinet", "carreau", "chaise", "classe", "cle", "coin", "couloir", "dossier", "eau", "ecole", "ecriture",
     "entree", "escalier", "etagere", "etude", "exterieur", "fenetre", "interieur", "lavabo", "lecture", "lit", "marche", "matelas", "maternelle",
     "meuble", "mousse", "mur", "peluche", "placard", "plafond", "porte", "portemanteau", "poubelle", "radiateur", "rampe", "recreation", "rentree",
     "rideau", "robinet", "salle", "savon", "serrure", "serviette", "siege", "sieste", "silence", "sol", "sommeil", "sonnette", "sortie", "table",
     "tableau", "tabouret", "tapis", "tiroir", "toilette", "vitre", "wc"];
 
-let motRandom = motsAleatoires().toUpperCase(); // Mot générer aléatoirement
-console.log(motRandom);
-
-let mauvaiseLettre = 0;         // Permet de compter le nombre de mauvaise lettres 
-let lettresTrouvees = 0;       // Permet de mettre toutes les lettres trouvées dans un tableau.
-let score = 0;                  // Permet d'incrémenter le score lorsque le joueur gagne la partie
-let fini = false;               // Indique si le jeu est fini ou pas.
-let nomJoueur;                  // Variable du prompt - Demande le nom du Joueur
+let motRandom = motsAleatoires().toUpperCase();     // Mot générer aléatoirement
+let mauvaiseLettre = 0;                             // Permet de compter le nombre de mauvaise lettres 
+let lettresTrouvees = 0;                            // Permet de mettre toutes les lettres trouvées dans un tableau.
+let score = 0;                                      // Permet d'incrémenter le score lorsque le joueur gagne la partie
+let fini = false;                                   // Indique si le jeu est fini ou pas.
+let nomJoueur;                                      // Variable du prompt - Demande le nom du Joueur
+let essais = 8;                                     // Nombre d'essais pour le joueur
 
 /**
  * Permet de lancer le jeu
@@ -27,6 +26,8 @@ function startGame() {
     for (let i in motRandom) {
         newSpan.innerHTML += "<span id=\"" + i + "\">" + tirets + "</span>";
     }
+    document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
+    document.getElementById('infos').innerHTML = 'Cliquer sur un bouton juste en dessous avec la souris pour commencer à jouer !';
 }
 
 /**
@@ -60,12 +61,15 @@ function choisirLettre(lettre) {
     }
 
     if (!motTrouvee) {
+        essais--;
+        document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
         mauvaiseLettre++;
         lettre.disabled = true;
         changeCouleurLettre(lettre, "red");
         document.getElementById('imagePendu').src = "images/pendu" + mauvaiseLettre + ".PNG";
 
-        if (mauvaiseLettre >= 8) {
+        if (mauvaiseLettre >= 8 && essais == 0) {
+            document.getElementById('imagePendu').src = "images/perdu.gif";
             alert("Vous avez perdu !"
                 + "\n" + "Le mot à trouvé était : " + motRandom);
             for (let i in motRandom) {
@@ -75,15 +79,9 @@ function choisirLettre(lettre) {
         }
     }
     if (lettresTrouvees == motRandom.length) {
-        document.getElementById('imagePendu').src = "images/smiley.gif";
+        document.getElementById('imagePendu').src = "images/win.gif";
         fini = true;
-        // alert("Vous avez gagné !");
-        // nomJoueur = prompt("Veuillez introduire votre nom : ");
         score += 5;
-        /*if (confirm("Lancer une nouvelle partie ?")) {
-            tableauScores();
-            document.location.reload(true);
-        }*/
     }
 }
 
@@ -91,7 +89,7 @@ function choisirLettre(lettre) {
  * Affiche le tableau de Scores pour les joueurs
  */
 function tableauScores() {
-    alert("Voici le Tableau de Scores : " + "\n" + "Nom du Joueur : " + nomJoueur
+    alert("Voici le Tableau de Scores : "
         + "\n" + "Score : " + score
         + "\n" + "Lettre trouvée + 1 points"
         + "\n" + "Mot trouvé + 5 points");
@@ -102,8 +100,8 @@ function tableauScores() {
  */
 function motsAleatoires() {
     let premierMot = 0;
-    let dernierMot = dictionnairesMots.length - 1;
+    let dernierMot = dictionnaire.length - 1;
     let resultat = Math.floor(Math.random() * (dernierMot - premierMot));
-    let afficheMot = dictionnairesMots[resultat];
+    let afficheMot = dictionnaire[resultat];
     return afficheMot;
 }
