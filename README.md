@@ -3,6 +3,10 @@
 - Création du Jeu Pendu 2020 (Exercices Perso)
 - Créateur : SEVERECLICK
 
+## Image du Jeu Pendu
+
+![pendu](https://i.ibb.co/JRL03Dq/Screenshot-2020-05-05-13-38-25-Convert-Image.png)
+
 ## Comment lancer le Jeu ?
 
 - Il suffit de télécharger le dossier complet en format ZIP.
