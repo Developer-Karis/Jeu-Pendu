@@ -16,7 +16,8 @@
 ## Math.Random, Math.Floor
 
 - Math.Random et Math.Floor, fonctions();
-- Il est utilisé pour générer aléatoirement un mot à chaque début de partie.
+- Random est utilisé pour générer aléatoirement un mot à chaque début de partie.
+- Floor est utilisé pour avoir un entier sans décimal. 
 
 ## Language Utilisé :
 
