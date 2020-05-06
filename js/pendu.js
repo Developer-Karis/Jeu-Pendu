@@ -21,13 +21,14 @@ let essais = 8;                                     // Nombre d'essais pour le j
  * Permet de lancer le jeu
  */
 function startGame() {
+    gameAudio();
     let tirets = "?";
     let newSpan = document.getElementById("mettreMot");
     for (let i in motRandom) {
         newSpan.innerHTML += "<span id=\"" + i + "\">" + tirets + "</span>";
     }
     document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
-    document.getElementById('infos').innerHTML = 'Cliquer sur un bouton juste en dessous avec la souris pour commencer à jouer !';
+    document.getElementById('infos').innerHTML = 'Cliquer sur une lettre juste en dessous pour commencer à jouer !';
 }
 
 /**
@@ -76,6 +77,8 @@ function choisirLettre(lettre) {
                 document.getElementById(i).innerHTML = motRandom.charAt(i);
             }
             fini = true;
+            let son_perdu = document.getElementById('sonPerdu');
+            son_perdu.play();
         }
     }
     if (lettresTrouvees == motRandom.length) {
@@ -104,4 +107,19 @@ function motsAleatoires() {
     let resultat = Math.floor(Math.random() * (dernierMot - premierMot));
     let afficheMot = dictionnaire[resultat];
     return afficheMot;
+}
+
+/**
+ * Permet de gérer l'audio du Jeu
+ */
+function gameAudio() {
+    let accueil = document.getElementById('accueil');
+    accueil.volume = 0.2;
+}
+
+/**
+ * Ajouter un timer pour rajouter de la difficulté dans le Jeu
+ */
+function timer() {
+
 }

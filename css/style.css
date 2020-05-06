@@ -50,3 +50,7 @@ button:hover {
 #score:hover, #restart:hover {
     background-color: yellow;
 }
+
+audio {
+    width: 22%;
+}

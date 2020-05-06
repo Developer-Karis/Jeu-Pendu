@@ -12,12 +12,18 @@
 </head>
 
 <body onload="startGame();">
-    <h1>Jeu du Pendu (Creator : Severeclick Beats)</h1>
-    <img id="imagePendu" src="images/blanc.jpg">
-    <p id="tentatives"></p>
-    <div id="mettreMot"></div>
-    <p id="infos"></p>
     <section>
+        <h1>Jeu du Pendu (Creator : Severeclick Beats)</h1>
+        <img id="imagePendu" src="images/blanc.jpg"><br>
+        <audio controls autoplay id="accueil">
+            <source src="sons/accueil.mp3" type="audio/mp3">
+        </audio>
+        <audio id="sonPerdu">
+            <source src="sons/perdu.mp3" type="audio/mp3">
+        </audio>
+        <p id="tentatives"></p>
+        <div id="mettreMot"></div>
+        <p id="infos"></p>
         <button onclick="choisirLettre(this);">A</button>
         <button onclick="choisirLettre(this);">B</button>
         <button onclick="choisirLettre(this);">C</button>
