@@ -15,12 +15,22 @@
     <section>
         <h1>Jeu du Pendu (Creator : Severeclick Beats)</h1>
         <img id="imagePendu" src="images/blanc.jpg"><br>
-        <audio controls autoplay id="accueil">
+        <audio autoplay id="accueil">
             <source src="sons/accueil.mp3" type="audio/mp3">
         </audio>
         <audio id="sonPerdu">
             <source src="sons/perdu.mp3" type="audio/mp3">
         </audio>
+        <audio id="sonGagnant">
+            <source src="sons/gagnant.mp3" type="audio/mp3">
+        </audio>
+        <audio id="bonneReponse">
+            <source src="sons/bonneReponse.mp3" type="audio/mp3">
+        </audio>
+        <audio id="mauvaiseReponse">
+            <source src="sons/mauvaiseReponse.mp3" type="audio/mp3">
+        </audio><br>
+        <time id="timer"></time>
         <p id="tentatives"></p>
         <div id="mettreMot"></div>
         <p id="infos"></p>

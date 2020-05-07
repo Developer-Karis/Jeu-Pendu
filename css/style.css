@@ -19,6 +19,11 @@ span {
     margin: 0.1em;
 }
 
+#timer {
+    font-size: 1.8em;
+    color: green;
+}
+
 p {
     color: red;
     font-size: 1.4em;
