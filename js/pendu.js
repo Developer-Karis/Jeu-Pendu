@@ -16,7 +16,7 @@ let score = 0;                                          // Permet d'incrémenter
 let fini = false;                                       // Indique si le jeu est fini ou pas.
 let nomJoueur;                                          // Variable du prompt - Demande le nom du Joueur
 let essais = 8;                                         // Nombre d'essais pour le joueur
-let secondes = 60;                                      // Temps restant du joueur
+let secondes = 30;                                      // Temps restant du joueur
 let interval = setInterval(timer, 1000);                // Ajoute un timer
 
 /**
@@ -24,7 +24,7 @@ let interval = setInterval(timer, 1000);                // Ajoute un timer
  */
 function startGame() {
     let accueil = document.getElementById('accueil');
-    accueil.volume = 0.1;
+    accueil.volume = 0.08;
     let tirets = "?";
     let newSpan = document.getElementById("mettreMot");
     for (let i in motRandom) {
@@ -63,8 +63,7 @@ function choisirLettre(lettre) {
             lettresTrouvees++;
             score++;
             let bonneReponse = document.getElementById('bonneReponse');
-            bonneReponse.volume = 0.1;
-            accueil.pause();
+            bonneReponse.volume = 0.2;
             bonneReponse.play();
         }
     }
@@ -72,7 +71,6 @@ function choisirLettre(lettre) {
     if (!motTrouvee) {
         let mauvaiseReponse = document.getElementById('mauvaiseReponse');
         mauvaiseReponse.volume = 0.1;
-        accueil.pause();
         mauvaiseReponse.play();
         essais--;
         document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
@@ -81,10 +79,10 @@ function choisirLettre(lettre) {
         changeCouleurLettre(lettre, "red");
         document.getElementById('imagePendu').src = "images/pendu" + mauvaiseLettre + ".PNG";
 
-        if (mauvaiseLettre >= 8 && essais == 0) {
+        if (mauvaiseLettre == 8 && essais == 0) {
+            accueil.pause();
+            sonCountdown.pause();
             document.getElementById('imagePendu').src = "images/perdu.gif";
-            alert("Vous avez perdu !"
-                + "\n" + "Le mot à trouvé était : " + motRandom);
             for (let i in motRandom) {
                 document.getElementById(i).innerHTML = motRandom.charAt(i);
             }
@@ -92,9 +90,8 @@ function choisirLettre(lettre) {
             // Activé l'audio
             let son_perdu = document.getElementById('sonPerdu');
             son_perdu.play();
-            son_perdu.volume = 0.4;
+            son_perdu.volume = 0.3;
             // Mettre en pause la musique sur la page d'acceuil
-            accueil.pause();
             clearInterval(interval);
         }
     }
@@ -103,9 +100,14 @@ function choisirLettre(lettre) {
         fini = true;
         score += 5;
         let gagnant = document.getElementById('sonGagnant');
-        gagnant.volume = 0.2;
+        gagnant.volume = 0.3;
         accueil.pause();
+        sonCountdown.pause();
         gagnant.play();
+        if (secondes >= 15) {
+            score += 3;
+        }
+        clearInterval(interval);
     }
 }
 
@@ -116,6 +118,7 @@ function tableauScores() {
     alert("Voici le Tableau de Scores : "
         + "\n" + "Score : " + score
         + "\n" + "Lettre trouvée + 1 points"
+        + "\n" + 'Lettre trouvée en moins de 20 secondes + 3 points'
         + "\n" + "Mot trouvé + 5 points");
 }
 
@@ -124,7 +127,7 @@ function tableauScores() {
  */
 function motsAleatoires() {
     let premierMot = 0;
-    let dernierMot = dictionnaire.length - 1;
+    let dernierMot = dictionnaire.length;
     let resultat = Math.floor(Math.random() * (dernierMot - premierMot));
     let afficheMot = dictionnaire[resultat];
     return afficheMot;
@@ -134,8 +137,26 @@ function motsAleatoires() {
  * Ajouter un timer pour rajouter de la difficulté dans le Jeu
  */
 function timer() {
-    if (secondes <= 30) {
-        score += 2;
+    if (secondes >= 0 && secondes <= 10) {
+        let sonCountdown = document.getElementById('sonCountdown');
+        sonCountdown.volume = 0.1;
+        accueil.pause();
+        sonCountdown.play();
+    }
+    if (secondes == 0) {
+        accueil.pause();
+        sonCountdown.pause();
+        document.getElementById('imagePendu').src = "images/perdu.gif";
+        for (let i in motRandom) {
+            document.getElementById(i).innerHTML = motRandom.charAt(i);
+        }
+        fini = true;
+        // Activé l'audio
+        let son_perdu = document.getElementById('sonPerdu');
+        son_perdu.play();
+        son_perdu.volume = 0.2;
+        // Mettre en pause la musique sur la page d'acceuil
+        clearInterval(interval);
     }
     document.getElementById('timer').innerHTML = "Temps restant : " + secondes + " secondes";
     secondes--;
