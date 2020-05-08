@@ -2,12 +2,9 @@
 
 // Initialisation des variables globales
 
-let dictionnaire = ["terminal", "processeur", "informatique", "peripheriques", "ordinateur", "numerique", "analogique", "declick",
-    "angle", "armoire", "banc", "bureau", "cabinet", "carreau", "chaise", "classe", "cle", "coin", "couloir", "dossier", "eau", "ecole", "ecriture",
-    "entree", "escalier", "etagere", "etude", "exterieur", "fenetre", "interieur", "lavabo", "lecture", "lit", "marche", "matelas", "maternelle",
-    "meuble", "mousse", "mur", "peluche", "placard", "plafond", "porte", "portemanteau", "poubelle", "radiateur", "rampe", "recreation", "rentree",
-    "rideau", "robinet", "salle", "savon", "serrure", "serviette", "siege", "sieste", "silence", "sol", "sommeil", "sonnette", "sortie", "table",
-    "tableau", "tabouret", "tapis", "tiroir", "toilette", "vitre", "wc"];
+let dictionnaire = ["Accrobranche", "Acrosport"];
+
+
 
 let motRandom = motsAleatoires().toUpperCase();         // Mot générer aléatoirement
 let mauvaiseLettre = 0;                                 // Permet de compter le nombre de mauvaise lettres 
@@ -18,6 +15,7 @@ let nomJoueur;                                          // Variable du prompt - 
 let essais = 8;                                         // Nombre d'essais pour le joueur
 let secondes = 30;                                      // Temps restant du joueur
 let interval = setInterval(timer, 1000);                // Ajoute un timer
+let themes = "";                                        // Indique le thème du mots au joueur
 
 /**
  * Permet de lancer le jeu
@@ -104,9 +102,6 @@ function choisirLettre(lettre) {
         accueil.pause();
         sonCountdown.pause();
         gagnant.play();
-        if (secondes >= 15) {
-            score += 3;
-        }
         clearInterval(interval);
     }
 }
