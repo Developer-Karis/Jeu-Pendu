@@ -2,14 +2,26 @@ body {
     background-color: khaki;
     text-align: center;
     font-family: 'Carter One', cursive;
+    width: 100%;
+    margin: auto;   
 }
 
 section {
+    position: relative;
+    top: 1.5em;
     width: 60%;
     height: 53em;
     margin: auto;
     background-color: paleturquoise;
     border: 3px solid black;
+}
+
+#themes {
+    background-color: yellow;
+    border: 3px solid black;
+    width: 35%;
+    margin: auto;
+    font-size: 2em;
 }
 
 #imagePendu {
@@ -33,20 +45,20 @@ span {
     position: relative;
     font-size: 1.8em;
     color: green;
-    bottom: 1.6em;
+    bottom: 2em;
 }
 
 #imageTimer {
     position: relative;
     width: 5%;
-    bottom: 2em;
+    bottom: 2.5em;
 }
 
 p {
     position: relative;
     color: red;
-    font-size: 1.5em;
-    bottom: 2.5em;
+    font-size: 1.8em;
+    bottom: 3em;
 }
 
 #infos {
@@ -60,7 +72,7 @@ button {
     cursor: pointer;
     border: none;
     border: 3px solid black;
-    bottom: 2em;
+    bottom: 4em;
 }
 
 button:hover {
@@ -69,7 +81,7 @@ button:hover {
 
 #score, #restart {
     position: relative;
-    bottom: 1.5em;
+    bottom: 3em;
     border-radius: 1em;
     width: 18%;
     font-size: 2em;

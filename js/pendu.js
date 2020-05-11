@@ -1,10 +1,18 @@
 "use strict";
 
 // Initialisation des variables globales
-
+// Tableau qui contient tous les mots du Jeu Pendu
 let dictionnaire = ["Accrobranche", "Acrosport"];
 
-
+// Tous les thèmes du Jeu
+let theme_Pendu = {
+    musique: [""],
+    animaux: ["singe"],
+    informatique: ["processeur"],
+    jeux: ["battlefield"],
+    films: ["intouchables"],
+    sports: ["badminton"]
+};
 
 let motRandom = motsAleatoires().toUpperCase();         // Mot générer aléatoirement
 let mauvaiseLettre = 0;                                 // Permet de compter le nombre de mauvaise lettres 
@@ -31,6 +39,7 @@ function startGame() {
     document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
     document.getElementById('infos').innerHTML = 'Cliquer sur une lettre juste en dessous pour commencer à jouer !';
     document.getElementById('timer').innerHTML = "Temps restant : " + secondes + " secondes";
+    document.getElementById('themes').innerHTML = "Thème : " + themes;
 }
 
 /**
@@ -85,11 +94,9 @@ function choisirLettre(lettre) {
                 document.getElementById(i).innerHTML = motRandom.charAt(i);
             }
             fini = true;
-            // Activé l'audio
             let son_perdu = document.getElementById('sonPerdu');
             son_perdu.play();
             son_perdu.volume = 0.3;
-            // Mettre en pause la musique sur la page d'acceuil
             clearInterval(interval);
         }
     }
@@ -146,11 +153,9 @@ function timer() {
             document.getElementById(i).innerHTML = motRandom.charAt(i);
         }
         fini = true;
-        // Activé l'audio
         let son_perdu = document.getElementById('sonPerdu');
         son_perdu.play();
         son_perdu.volume = 0.2;
-        // Mettre en pause la musique sur la page d'acceuil
         clearInterval(interval);
     }
     document.getElementById('timer').innerHTML = "Temps restant : " + secondes + " secondes";
