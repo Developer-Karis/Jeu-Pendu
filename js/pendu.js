@@ -2,18 +2,20 @@
 
 // Initialisation des variables globales
 // Tableau qui contient tous les mots du Jeu Pendu
-let dictionnaire = ["Accrobranche", "Acrosport"];
+let dictionnaire = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball"];
 
 // Tous les thèmes du Jeu
-let theme_Pendu = {
-    musique: [""],
-    animaux: ["singe"],
-    informatique: ["processeur"],
-    jeux: ["battlefield"],
-    films: ["intouchables"],
-    sports: ["badminton"]
-};
+let musique = ["billie"];
+let animaux = ["singe", "gorille"];
+let informatique = ["processeur", "ordinateur"];
+let jeux = ["battlefield", "valorant"];
+let films = ["intouchables", "fast and furious"];
+let sports = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball"];
 
+// Gérer les images du Pendu
+let ajouterImagesSports = new Array();
+
+// Autres variables globales
 let motRandom = motsAleatoires().toUpperCase();         // Mot générer aléatoirement
 let mauvaiseLettre = 0;                                 // Permet de compter le nombre de mauvaise lettres 
 let lettresTrouvees = 0;                                // Permet de mettre toutes les lettres trouvées dans un tableau.
@@ -34,7 +36,29 @@ function startGame() {
     let tirets = "?";
     let newSpan = document.getElementById("mettreMot");
     for (let i in motRandom) {
+        // Permet de créer le mot avec le symbole ?
         newSpan.innerHTML += "<span id=\"" + i + "\">" + tirets + "</span>";
+        // Condition qui permet de comparer le tableau Dictionnaire 
+        // et les tableaux des différents thèmes pour afficher le thème du Pendu
+        if (motRandom.toLowerCase() == musique[i]) {
+            themes = "Musique";
+            document.getElementById().src = "images/themes"
+        }
+        if (motRandom.toLowerCase() == animaux[i]) {
+            themes = "Animaux";
+        }
+        if (motRandom.toLowerCase() == informatique[i]) {
+            themes = "Informatique";
+        }
+        if (motRandom.toLowerCase() == jeux[i]) {
+            themes = "Jeux Vidéo";
+        }
+        if (motRandom.toLowerCase() == films[i]) {
+            themes = "Films";
+        }
+        if (motRandom.toLowerCase() == sports[i]) {
+            themes = "Sports";
+        }
     }
     document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
     document.getElementById('infos').innerHTML = 'Cliquer sur une lettre juste en dessous pour commencer à jouer !';
@@ -160,4 +184,17 @@ function timer() {
     }
     document.getElementById('timer').innerHTML = "Temps restant : " + secondes + " secondes";
     secondes--;
+}
+
+/**
+ * Permet de gérer les images Sports du Pendu
+ */
+function imageSports() {
+    let nombreImagesSports = document.getElementsByClassName('themesPendu').length;
+    for (let i in nombreImagesSports) {
+        ajouterImagesSports.push("images/themes/sports/sports" + i + ".gif");
+    }
+    let randomImages = Math.floor(Math.random() * ajouterImagesSports.length);
+    console.log(randomImages);
+    document.getElementById("theme_sports").src = ajouterImagesSports[randomImages];  
 }

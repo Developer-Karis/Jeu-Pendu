@@ -3,14 +3,12 @@ body {
     text-align: center;
     font-family: 'Carter One', cursive;
     width: 100%;
-    margin: auto;   
+    margin: auto;
 }
 
 section {
-    position: relative;
-    top: 1.5em;
     width: 60%;
-    height: 53em;
+    height: 52em;
     margin: auto;
     background-color: paleturquoise;
     border: 3px solid black;
@@ -19,9 +17,9 @@ section {
 #themes {
     background-color: yellow;
     border: 3px solid black;
-    width: 35%;
+    width: 40%;
     margin: auto;
-    font-size: 2em;
+    font-size: 1.8em;
 }
 
 #imagePendu {
@@ -43,7 +41,7 @@ span {
 
 #timer {
     position: relative;
-    font-size: 1.8em;
+    font-size: 1.7em;
     color: green;
     bottom: 2em;
 }
@@ -57,17 +55,20 @@ span {
 p {
     position: relative;
     color: red;
-    font-size: 1.8em;
-    bottom: 3em;
+    font-size: 1.7em;
+    bottom: 2.8em;
 }
 
 #infos {
     color: blue;
+    font-size: 1.5em;
+    position: relative;
+    bottom: 3.5em;
 }
 
 button {
     position: relative;
-    font-size: 1.5em;
+    font-size: 1.8em;
     margin-bottom: 2em;
     cursor: pointer;
     border: none;
@@ -84,7 +85,6 @@ button:hover {
     bottom: 3em;
     border-radius: 1em;
     width: 18%;
-    font-size: 2em;
     background-color: aqua;
 }
 
@@ -94,8 +94,8 @@ button:hover {
 
 #theme_informatique {
     position: absolute;
-    width: 15%;
-    left: 2.5%;
+    width: 14%;
+    left: 1.5%;
     border: 3px solid black;
     animation: MoveUpDown 3s linear infinite;
     animation-direction: alternate;
@@ -104,8 +104,8 @@ button:hover {
 
 #theme_music {
     position: absolute;
-    width: 15%;
-    left: 2.5%;
+    width: 14%;
+    left: 1.5%;
     height: 10em;
     border: 3px solid black;
     animation: MoveUpDownJeux 3s linear infinite;
@@ -115,9 +115,9 @@ button:hover {
 
 #theme_animaux {
     position: absolute;
-    width: 15%;
+    width: 14%;
     height: 9em;
-    left: 2.5%;
+    left: 1.5%;
     border: 3px solid black;
     animation: MoveUpDownAnimaux 3s linear infinite;
     animation-direction: alternate;
@@ -127,8 +127,8 @@ button:hover {
 
 #theme_sports {
     position: absolute;
-    width: 15%;
-    right: 2.5%;
+    width: 14%;
+    right: 1.5%;
     height: 10em;
     border: 3px solid black;
     animation: MoveUpDown 3s linear infinite;
@@ -138,8 +138,8 @@ button:hover {
 
 #theme_jeux {
     position: absolute;
-    width: 15%;
-    right: 2.5%;
+    width: 14%;
+    right: 1.5%;
     border: 3px solid black;
     animation: MoveUpDownJeux 3s linear infinite;
     animation-direction: alternate;
@@ -148,8 +148,8 @@ button:hover {
 
 #theme_films {
     position: absolute;
-    width: 15%;
-    right: 2.5%;
+    width: 14%;
+    right: 1.5%;
     height: 10em;
     border: 3px solid black;
     background-color: white;
@@ -158,18 +158,9 @@ button:hover {
     transform: rotate(15deg) scale(1);
 }
 
-@keyframes MoveUpDown {
-    from {
-        top: 35em;
-    }
-    to { 
-        top: 42em;
-    }
-}
-
 @keyframes MoveUpDownJeux {
     from {
-        top: 3em;
+        top: 4em;
     }
     to { 
         top: 10em;
@@ -182,5 +173,14 @@ button:hover {
     }
     to { 
         top: 25em;
+    }
+}
+
+@keyframes MoveUpDown {
+    from {
+        top: 35em;
+    }
+    to { 
+        top: 42em;
     }
 }
