@@ -2,7 +2,7 @@
 
 // Initialisation des variables globales
 // Tableau qui contient tous les mots du Jeu Pendu
-let dictionnaire = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball"];
+let dictionnaire = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball", "singe", "billard", "gorille"];
 
 // Tous les thèmes du Jeu
 let musique = ["billie"];
@@ -10,10 +10,10 @@ let animaux = ["singe", "gorille"];
 let informatique = ["processeur", "ordinateur"];
 let jeux = ["battlefield", "valorant"];
 let films = ["intouchables", "fast and furious"];
-let sports = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball"];
+let sports = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball", "billard"];
 
 // Gérer les images du Pendu
-let ajouterImagesSports = new Array();
+let ajouterImageSports = new Array();
 
 // Autres variables globales
 let motRandom = motsAleatoires().toUpperCase();         // Mot générer aléatoirement
@@ -42,22 +42,27 @@ function startGame() {
         // et les tableaux des différents thèmes pour afficher le thème du Pendu
         if (motRandom.toLowerCase() == musique[i]) {
             themes = "Musique";
-            document.getElementById().src = "images/themes"
+            imageMusic();
         }
         if (motRandom.toLowerCase() == animaux[i]) {
             themes = "Animaux";
+            imageAnimaux();
         }
         if (motRandom.toLowerCase() == informatique[i]) {
             themes = "Informatique";
+            imageInformatique();
         }
         if (motRandom.toLowerCase() == jeux[i]) {
             themes = "Jeux Vidéo";
+            imageJeux();
         }
         if (motRandom.toLowerCase() == films[i]) {
             themes = "Films";
+            imageFilms();
         }
         if (motRandom.toLowerCase() == sports[i]) {
             themes = "Sports";
+            imageSports();
         }
     }
     document.getElementById('tentatives').innerHTML = "Nombre d'essais : " + essais;
@@ -187,14 +192,47 @@ function timer() {
 }
 
 /**
+ * Permet de gérer les musiques du Pendu
+ */
+function imageMusic() {
+
+}
+
+/**
+ * Permet de gérer les images Animaux du Pendu
+ */
+function imageAnimaux() {
+
+}
+
+/**
+ * Permet de gérer les images Informatique du Pendu
+ */
+function imageInformatique() {
+
+}
+
+/**
+ * Permet de gérer les images Jeu du Pendu
+ */
+function imageJeux() {
+
+}
+
+/**
+ * Permet de gérer les images Films du Pendu
+ */
+function imageFilms() {
+
+}
+
+/**
  * Permet de gérer les images Sports du Pendu
  */
 function imageSports() {
-    let nombreImagesSports = document.getElementsByClassName('themesPendu').length;
-    for (let i in nombreImagesSports) {
-        ajouterImagesSports.push("images/themes/sports/sports" + i + ".gif");
+    let nombreImageSports = document.getElementsByClassName('themesPendu');
+    for (let i = 0; i < nombreImageSports.length; i++) {
+        ajouterImageSports.push("images/themes/sports/sports" + i + ".gif");
+        document.getElementsByClassName("themesPendu")[i].src = ajouterImageSports[i];
     }
-    let randomImages = Math.floor(Math.random() * ajouterImagesSports.length);
-    console.log(randomImages);
-    document.getElementById("theme_sports").src = ajouterImagesSports[randomImages];  
 }
