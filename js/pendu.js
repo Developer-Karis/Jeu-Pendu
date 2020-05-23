@@ -2,7 +2,7 @@
 
 // Initialisation des variables globales
 // Tableau qui contient tous les mots du Jeu Pendu
-let dictionnaire = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball", "singe", "billard", "gorille"];
+let dictionnaire = ["aikido", "alpinisme", "aviron", "badminton", "baseball", "basketball", "billard"];
 
 // Tous les thèmes du Jeu
 let musique = ["billie"];
@@ -230,9 +230,13 @@ function imageFilms() {
  * Permet de gérer les images Sports du Pendu
  */
 function imageSports() {
+    // Afficher les images Sports
     let nombreImageSports = document.getElementsByClassName('themesPendu');
     for (let i = 0; i < nombreImageSports.length; i++) {
         ajouterImageSports.push("images/themes/sports/sports" + i + ".gif");
-        document.getElementsByClassName("themesPendu")[i].src = ajouterImageSports[i];
+        nombreImageSports[i].src = ajouterImageSports[i];
     }
+    // Changer aléatoirement les images du Thème Sports
+    let randomImageSports = Math.floor(Math.random() * ajouterImageSports.length);
+    nombreImageSports[0].src = ajouterImageSports[randomImageSports];
 }
