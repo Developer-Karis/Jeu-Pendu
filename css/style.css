@@ -97,9 +97,19 @@ button:hover {
 
 #smileyBot {
     position: absolute;
-    width: 15%;
+    width: 18%;
     top: 8em;
     left: 6em;
+    mix-blend-mode: multiply;
+}
+
+#smileyBot2 {
+    position: absolute;
+    width: 18%;
+    top: 8em;
+    right: 6em;
+    mix-blend-mode: multiply;
+    transform: scaleX(-1);
 }
 
 #theme_informatique {

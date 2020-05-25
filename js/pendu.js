@@ -238,5 +238,13 @@ function imageSports() {
     }
     // Changer aléatoirement les images du Thème Sports
     let randomImageSports = Math.floor(Math.random() * ajouterImageSports.length);
-    nombreImageSports[0].src = ajouterImageSports[randomImageSports];
+
+    let countImages = 6;
+    for (let index = countImages; index <= 7; index++) {
+        ajouterImageSports.push("images/themes/sports/sports" + index + ".gif");
+    }
+    let min = countImages;
+    let max = (ajouterImageSports.length - 1);
+    let randomIntervalleImages = Math.floor(Math.random() * (min - max + 1) + max);
+    nombreImageSports[randomImageSports].src = ajouterImageSports[randomIntervalleImages];
 }
